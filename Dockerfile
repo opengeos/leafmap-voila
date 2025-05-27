@@ -1,6 +1,6 @@
 FROM quay.io/jupyter/base-notebook:latest
 
-RUN mamba install -c conda-forge leafmap maplibre voila -y && \
+RUN mamba install -c conda-forge leafmap maplibre fiona geopandas voila -y && \
     pip install -U leafmap && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
