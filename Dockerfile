@@ -5,6 +5,8 @@ RUN mamba install -c conda-forge leafmap maplibre fiona geopandas voila -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+RUN pip install -U leafmap
+
 WORKDIR /home/jovyan
 USER jovyan
 
