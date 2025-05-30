@@ -1,3 +1,17 @@
+---
+title: Leafmap Voila
+emoji: 🚀
+colorFrom: red
+colorTo: red
+sdk: docker
+app_port: 8866
+tags:
+  - leafmap
+pinned: false
+short_description: A Voila template for leafmap
+license: mit
+---
+
 # leafmap-voila
 
 Build a docker image for using leafmap with Voila
