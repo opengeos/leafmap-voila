@@ -1,22 +1,20 @@
-FROM quay.io/jupyter/base-notebook:latest
+FROM condaforge/mambaforge:latest
 
-RUN mamba install -c conda-forge leafmap maplibre fiona geopandas voila -y && \
-    pip install -U leafmap && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+# The HF Space container runs with user ID 1000.
+RUN useradd -m -u 1000 user
+USER user
 
-RUN pip install -U leafmap
+# Set home to the user's home directory
+ENV HOME=/home/user \
+  PATH=/home/user/.local/bin:$PATH
 
-WORKDIR /home/jovyan
-USER jovyan
+# Set the working directory to the user's home directory
+WORKDIR $HOME/app
+COPY --chown=user . .
 
-RUN mkdir ./notebooks
-COPY ./notebooks ./notebooks
-
-COPY run.sh .
+RUN mamba env create --prefix $HOME/env  -f ./environment.yml
 
 EXPOSE 7860
+WORKDIR $HOME/app
 
-HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health
-
-CMD ["/bin/bash", "run.sh"]
+CMD ["mamba", "run", "-p", "/home/user/env", "--no-capture-output", "voila", "--no-browser", "notebooks/"]
