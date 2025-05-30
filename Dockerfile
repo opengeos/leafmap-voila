@@ -11,6 +11,7 @@ WORKDIR /home/jovyan
 USER jovyan
 
 RUN mkdir ./notebooks
+COPY ./notebooks ./notebooks
 
 COPY run.sh .
 
