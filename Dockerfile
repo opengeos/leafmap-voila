@@ -14,8 +14,8 @@ RUN mkdir ./notebooks
 
 COPY run.sh .
 
-EXPOSE 8866
+EXPOSE 7860
 
-HEALTHCHECK CMD curl --fail http://localhost:8866/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health
 
 CMD ["/bin/bash", "run.sh"]

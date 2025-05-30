@@ -4,7 +4,7 @@ emoji: 🚀
 colorFrom: red
 colorTo: red
 sdk: docker
-app_port: 8866
+app_port: 7860
 tags:
   - leafmap
 pinned: false
@@ -25,7 +25,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t giswqs/leafmap:voila -
 To run the image:
 
 ```bash
-docker run -it -p 8866:8866 -v $(pwd):/home/jovyan/notebooks giswqs/leafmap:voila
+docker run -it -p 7860:7860 -v $(pwd):/home/jovyan/notebooks giswqs/leafmap:voila
 ```
 
 To push the image to the registry:
