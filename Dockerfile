@@ -15,6 +15,11 @@ COPY --chown=jovyan . .
 
 RUN mamba env create --prefix $HOME/env  -f ./environment.yml
 
+# Create notebooks directory and copy notebooks there for Hugging Face deployment
+# (local volume mounts will override this)
+RUN mkdir -p /home/jovyan/notebooks && \
+    cp -r /home/jovyan/app/notebooks/* /home/jovyan/notebooks/ 2>/dev/null || true
+
 EXPOSE 7860
 WORKDIR $HOME/app
 
